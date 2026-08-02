@@ -1,0 +1,25 @@
+{
+  "name": "Pablo Workspace",
+  "background": "#0D1117",
+  "foreground": "#D8DEE9",
+  "cursorColor": "#E6EDF3",
+  "selectionBackground": "#30363D",
+
+  "black": "#161B22",
+  "red": "#F47067",
+  "green": "#7EE787",
+  "yellow": "#D29922",
+  "blue": "#79C0FF",
+  "purple": "#D2A8FF",
+  "cyan": "#56D4DD",
+  "white": "#B1BAC4",
+
+  "brightBlack": "#6E7681",
+  "brightRed": "#FF7B72",
+  "brightGreen": "#56D364",
+  "brightYellow": "#E3B341",
+  "brightBlue": "#A5D6FF",
+  "brightPurple": "#E2C5FF",
+  "brightCyan": "#76E3EA",
+  "brightWhite": "#F0F6FC"
+}

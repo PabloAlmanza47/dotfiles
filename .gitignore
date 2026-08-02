@@ -1,0 +1,23 @@
+# Local and private settings
+.claude/
+*.local.*
+.env
+.env.*
+secrets/
+credentials/
+
+# Neovim generated data
+nvim/lazy/
+nvim/.cache/
+nvim/.local/
+.nvimlog
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*~

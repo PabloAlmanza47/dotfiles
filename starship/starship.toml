@@ -1,0 +1,70 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = true
+palette = "pablo"
+
+format = """
+[╭─](muted)\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$cmd_duration\
+$line_break\
+[╰─](muted)$character"""
+
+[palettes.pablo]
+blue = "#79C0FF"
+cyan = "#56D4DD"
+green = "#56D364"
+yellow = "#E3B341"
+red = "#FF7B72"
+purple = "#D2A8FF"
+text = "#D8DEE9"
+muted = "#6E7681"
+
+[directory]
+format = "[   $path ]($style)"
+style = "bold blue"
+truncation_length = 4
+truncate_to_repo = true
+truncation_symbol = "…/"
+read_only = " "
+read_only_style = "bold red"
+
+[git_branch]
+format = "[on $symbol$branch ]($style)"
+symbol = " "
+style = "bold purple"
+truncation_length = 30
+truncation_symbol = "…"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "bold yellow"
+
+conflicted = "${count} "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+untracked = "${count} "
+stashed = "󰏗${count} "
+modified = "${count} "
+staged = "${count} "
+renamed = "${count} "
+deleted = "${count} "
+
+[nodejs]
+format = "[via $symbol$version ]($style)"
+symbol = " "
+style = "bold green"
+
+[cmd_duration]
+min_time = 2000
+format = "[took $duration ](bold yellow)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
