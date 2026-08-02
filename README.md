@@ -69,7 +69,7 @@ place and leaves anything it replaces safely backed up.
 ## Installation
 
 ```sh
-git clone <this-repo-url> dotfiles
+git clone https://github.com/PabloAlmanza47/dotfiles.git dotfiles
 cd dotfiles
 ./install.sh --dry-run   # preview what would happen
 ./install.sh             # apply it
@@ -210,4 +210,4 @@ requires or stores machine-specific paths, tokens, or personal data.
 
 ## License
 
-Pending.
+Licensed under the [MIT License](LICENSE).
