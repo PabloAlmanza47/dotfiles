@@ -6,21 +6,22 @@
 --
 -- C#: csharp_ls, not omnisharp — it's the Roslyn-workspace-based server
 -- (omnisharp is the older HTTP/JSON-RPC design) and ships as a plain Mason
--- package instead of needing an extra plugin like roslyn.nvim. Either way,
--- any C# server needs a `dotnet` runtime on PATH; this machine doesn't have
--- one installed, so csharp_ls will be configured but stay inert for .cs
--- files until dotnet is installed (see README).
+-- package instead of needing an extra plugin like roslyn.nvim. It is only
+-- added when a `dotnet` runtime is available on PATH (see README).
 local ensure_installed = {
   "lua_ls",
   "basedpyright",
   "ts_ls",
   "angularls",
   "clangd",
-  "csharp_ls",
   "jsonls",
   "html",
   "cssls",
 }
+
+if vim.fn.executable("dotnet") == 1 then
+  table.insert(ensure_installed, "csharp_ls")
+end
 
 vim.diagnostic.config({
   virtual_text = { prefix = "●", spacing = 2 },

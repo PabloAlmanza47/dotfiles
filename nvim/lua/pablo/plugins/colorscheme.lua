@@ -20,7 +20,7 @@ return {
     priority = 1000,
     opts = {
       options = {
-        transparent = false,
+        transparent = true,
         terminal_colors = true,
       },
       -- Highlight groups called out explicitly in the spec: diagnostics,
@@ -28,6 +28,9 @@ return {
       -- Lualine gets its own theme table in statusline.lua instead.
       groups = {
         all = {
+          Normal = { bg = "NONE" },
+          NormalNC = { bg = "NONE" },
+
           NormalFloat = { bg = palette.surface },
           FloatBorder = { fg = palette.border, bg = palette.surface },
 
@@ -42,7 +45,7 @@ return {
           TelescopeResultsBorder = { fg = palette.border, bg = palette.surface },
           TelescopePreviewBorder = { fg = palette.border, bg = palette.surface },
 
-          NvimTreeNormal = { bg = palette.surface },
+          NvimTreeNormal = { bg = "NONE" },
           NvimTreeWinSeparator = { fg = palette.border },
           NvimTreeIndentMarker = { fg = palette.border },
 
