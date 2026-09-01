@@ -39,3 +39,33 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     end
   end,
 })
+
+-- Save modified named file buffers when leaving them or when Neovim loses focus.
+local autosave_filetypes = {
+  help = true,
+  NvimTree = true,
+  TelescopePrompt = true,
+  TelescopeResults = true,
+}
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  group = augroup,
+  desc = "Autosave modified file buffers",
+  callback = function(args)
+    local buffer = vim.bo[args.buf]
+    if
+      not buffer.modified
+      or not buffer.modifiable
+      or buffer.readonly
+      or buffer.buftype ~= ""
+      or vim.api.nvim_buf_get_name(args.buf) == ""
+      or autosave_filetypes[buffer.filetype]
+    then
+      return
+    end
+
+    vim.api.nvim_buf_call(args.buf, function()
+      vim.cmd("silent update")
+    end)
+  end,
+})
