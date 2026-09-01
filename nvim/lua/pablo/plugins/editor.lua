@@ -8,6 +8,7 @@ return {
       { "<leader>E", "<cmd>NvimTreeFocus<CR>", desc = "Focus explorer" },
     },
     opts = {
+      actions = { open_file = { quit_on_open = true } },
       view = { width = 32 },
       git = { enable = true },
       diagnostics = { enable = true },

@@ -16,17 +16,17 @@ local colors = {
 local theme = {
   normal = {
     a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
-    b = { bg = colors.surface, fg = colors.text },
-    c = { bg = colors.bg, fg = colors.muted },
+    b = { bg = "NONE", fg = colors.text },
+    c = { bg = "NONE", fg = colors.muted },
   },
   insert = { a = { bg = colors.green, fg = colors.bg, gui = "bold" } },
   visual = { a = { bg = colors.purple, fg = colors.bg, gui = "bold" } },
   replace = { a = { bg = colors.red, fg = colors.bg, gui = "bold" } },
   command = { a = { bg = colors.yellow, fg = colors.bg, gui = "bold" } },
   inactive = {
-    a = { bg = colors.bg, fg = colors.muted },
-    b = { bg = colors.bg, fg = colors.muted },
-    c = { bg = colors.bg, fg = colors.muted },
+    a = { bg = "NONE", fg = colors.muted },
+    b = { bg = "NONE", fg = colors.muted },
+    c = { bg = "NONE", fg = colors.muted },
   },
 }
 
