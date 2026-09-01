@@ -15,10 +15,13 @@ return {
 
         local function open_file_and_close()
           local node = api.tree.get_node_under_cursor()
-          api.node.open.edit(node)
 
           if node and node.type == "file" then
+            local path = node.absolute_path
             api.tree.close()
+            vim.cmd("edit " .. vim.fn.fnameescape(path))
+          else
+            api.node.open.edit(node)
           end
         end
 
