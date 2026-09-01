@@ -8,7 +8,28 @@ return {
       { "<leader>E", "<cmd>NvimTreeFocus<CR>", desc = "Focus explorer" },
     },
     opts = {
-      actions = { open_file = { quit_on_open = true } },
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+
+        api.config.mappings.default_on_attach(bufnr)
+
+        local function open_file_and_close()
+          local node = api.tree.get_node_under_cursor()
+          api.node.open.edit(node)
+
+          if node and node.type == "file" then
+            api.tree.close()
+          end
+        end
+
+        local map_opts = {
+          buffer = bufnr,
+          noremap = true,
+          silent = true,
+          nowait = true,
+        }
+        vim.keymap.set("n", "<CR>", open_file_and_close, map_opts)
+      end,
       view = { width = 32 },
       git = { enable = true },
       diagnostics = { enable = true },
