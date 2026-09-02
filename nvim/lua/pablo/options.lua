@@ -18,7 +18,7 @@ opt.tabstop = 4
 opt.softtabstop = 4
 opt.smartindent = true
 opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.listchars = { tab = "» ", nbsp = "␣" }
 
 -- search
 opt.ignorecase = true
