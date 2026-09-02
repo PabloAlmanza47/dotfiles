@@ -6,6 +6,7 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.termguicolors = true
+opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.mouse = "a"
@@ -61,5 +62,20 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.shiftwidth = 2
     vim.bo.tabstop = 2
     vim.bo.softtabstop = 2
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Wrap prose filetypes cleanly",
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "markdown" or vim.bo.filetype == "text" then
+      vim.wo.wrap = true
+      vim.wo.linebreak = true
+      vim.wo.breakindent = true
+      vim.wo.showbreak = "↪ "
+    else
+      vim.wo.wrap = false
+    end
   end,
 })
