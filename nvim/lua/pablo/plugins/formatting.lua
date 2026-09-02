@@ -1,21 +1,22 @@
--- Formatter binaries (stylua, prettier, ruff, clang-format, csharpier) are
--- plain Mason packages too: `:MasonInstall stylua prettier ruff clang-format
--- csharpier` (see README). Conform's built-in "prettier"/others already
+-- Formatter binaries (stylua, prettierd/prettier, ruff, clang-format,
+-- csharpier) are
+-- plain Mason packages too: `:MasonInstall stylua prettierd prettier ruff
+-- clang-format csharpier` (see README). Conform's built-in "prettier"/others already
 -- prefer a project-local install (node_modules/.bin/...) over a global one.
 local formatters_by_ft = {
   lua = { "stylua" },
   python = { "ruff_format" },
-  javascript = { "prettier" },
-  javascriptreact = { "prettier" },
-  typescript = { "prettier" },
-  typescriptreact = { "prettier" },
-  json = { "prettier" },
-  jsonc = { "prettier" },
-  html = { "prettier" },
-  css = { "prettier" },
-  scss = { "prettier" },
-  yaml = { "prettier" },
-  markdown = { "prettier" },
+  javascript = { "prettierd", "prettier", stop_after_first = true },
+  javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+  typescript = { "prettierd", "prettier", stop_after_first = true },
+  typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+  json = { "prettierd", "prettier", stop_after_first = true },
+  jsonc = { "prettierd", "prettier", stop_after_first = true },
+  html = { "prettierd", "prettier", stop_after_first = true },
+  css = { "prettierd", "prettier", stop_after_first = true },
+  scss = { "prettierd", "prettier", stop_after_first = true },
+  yaml = { "prettierd", "prettier", stop_after_first = true },
+  markdown = { "prettierd", "prettier", stop_after_first = true },
   c = { "clang_format" },
   cpp = { "clang_format" },
   cs = { "csharpier" },

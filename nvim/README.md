@@ -111,7 +111,7 @@ Formatter binaries (separate from LSP, used by `<leader>f` / format-on-save)
 are also plain Mason packages:
 
 ```
-:MasonInstall stylua prettier ruff clang-format csharpier
+:MasonInstall stylua prettierd prettier ruff clang-format csharpier
 ```
 
 `csharpier` also needs `dotnet`.
