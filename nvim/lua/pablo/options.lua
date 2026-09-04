@@ -45,6 +45,11 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 opt.updatetime = 250
 opt.confirm = true -- ask instead of erroring on :q with unsaved changes
 
+-- Publish the current buffer to terminals (and therefore tmux pane_title).
+-- Use only the basename so pane borders stay concise; title is restored on exit.
+opt.title = true
+opt.titlestring = "nvim · %{empty(expand('%:t')) ? '[No Name]' : expand('%:t')}%{&modified ? ' *' : ''}"
+
 -- 2-space filetypes; everything else keeps the 4-space default above
 local two_space_filetypes = {
   "javascript", "javascriptreact",
