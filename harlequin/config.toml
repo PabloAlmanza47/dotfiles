@@ -1,0 +1,44 @@
+default_profile = "workspace"
+
+[profiles.workspace]
+adapter = "postgres"
+# Tokyo Night colors with a native ANSI-default base so Windows Terminal's
+# background/transparency remains visible behind Harlequin.
+theme = "terminal-home-tokyo"
+locale = "en_US.UTF-8"
+keymap_name = ["vscode", "th"]
+limit = 500
+
+# Keep navigation familiar with tmux and Neovim without changing query-editor
+# text input. This map is layered after Harlequin's built-in VS Code map.
+[[keymaps.th]]
+keys = "h"
+action = "data_catalog.previous_tab"
+
+[[keymaps.th]]
+keys = "j"
+action = "data_catalog.cursor_down"
+
+[[keymaps.th]]
+keys = "k"
+action = "data_catalog.cursor_up"
+
+[[keymaps.th]]
+keys = "l"
+action = "data_catalog.next_tab"
+
+[[keymaps.th]]
+keys = "h"
+action = "results_viewer.cursor_left"
+
+[[keymaps.th]]
+keys = "j"
+action = "results_viewer.cursor_down"
+
+[[keymaps.th]]
+keys = "k"
+action = "results_viewer.cursor_up"
+
+[[keymaps.th]]
+keys = "l"
+action = "results_viewer.cursor_right"
