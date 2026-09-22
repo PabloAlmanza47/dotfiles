@@ -4,7 +4,7 @@ default_profile = "workspace"
 adapter = "postgres"
 # Tokyo Night colors with a native ANSI-default base so Windows Terminal's
 # background/transparency remains visible behind Harlequin.
-theme = "terminal-home-tokyo"
+theme = "tokyo-night"
 locale = "en_US.UTF-8"
 keymap_name = ["vscode", "th"]
 limit = 500

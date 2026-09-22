@@ -1,13 +1,14 @@
 """Launch Harlequin with a terminal-background-friendly Tokyo Night theme.
 
-Harlequin removes Textual's ANSI themes from its public theme list, but
-Textual 8.2.8 supports native ANSI colors.  Registering this small hybrid
-theme before importing Harlequin's CLI keeps the change outside uv's managed
-site-packages while retaining Harlequin's normal CLI, config, adapters, and
-keymap handling.
+The profile deliberately names Textual's built-in ``tokyo-night`` theme so
+Harlequin can validate the config before the app exists.  Once Harlequin has
+constructed its normal app, the subclass below registers and applies the
+terminal-home variant.  This keeps Harlequin's regular CLI, config, adapter,
+locale, and keymap handling intact without changing its installed files.
 """
 
-from textual.theme import BUILTIN_THEMES, Theme
+from textual.theme import Theme
+from pathlib import Path
 
 
 THEME_NAME = "terminal-home-tokyo"
@@ -31,6 +32,8 @@ TERMINAL_HOME_TOKYO = Theme(
     boost="#2F3560",
     dark=True,
     variables={
+        "ansi-background": "ansi_default",
+        "ansi-foreground": "ansi_default",
         "button-color-foreground": "#1A1B26",
         "input-selection-background": "#7AA2F760",
         "screen-selection-background": "#7AA2F760",
@@ -38,17 +41,35 @@ TERMINAL_HOME_TOKYO = Theme(
 )
 
 
-# App.__init__ registers Textual's built-in themes, while Harlequin's CLI
-# imports VALID_THEMES to advertise/accept names.  Add the same theme to both
-# registries before the CLI module is imported.
-BUILTIN_THEMES[THEME_NAME] = TERMINAL_HOME_TOKYO
+import harlequin.app as harlequin_app  # noqa: E402
+from harlequin.app import Harlequin  # noqa: E402
+from harlequin.cli import harlequin as harlequin_cli  # noqa: E402
 
-from harlequin import colors  # noqa: E402
 
-colors.VALID_THEMES[THEME_NAME] = TERMINAL_HOME_TOKYO
+class TerminalHomeHarlequin(Harlequin):
+    """Apply the custom theme after Harlequin's normal app initialization."""
 
-from harlequin.cli import harlequin  # noqa: E402
+    # Textual resolves relative CSS_PATH entries from the module defining the
+    # concrete app class.  Keep Harlequin's packaged stylesheets when this
+    # wrapper supplies that concrete class from the dotfiles checkout.
+    CSS_PATH = [
+        Path(harlequin_app.__file__).with_name("global.tcss"),
+        Path(harlequin_app.__file__).with_name("app.tcss"),
+    ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.register_theme(TERMINAL_HOME_TOKYO)
+        self.theme = THEME_NAME
+
+
+# The CLI imports the app class as a module global and instantiates that
+# symbol after it has parsed and validated the profile.  Replacing only that
+# class keeps the rest of the normal Harlequin startup path unchanged.
+import harlequin.cli as harlequin_cli_module  # noqa: E402
+
+harlequin_cli_module.Harlequin = TerminalHomeHarlequin
 
 
 if __name__ == "__main__":
-    raise SystemExit(harlequin())
+    raise SystemExit(harlequin_cli())
