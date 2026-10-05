@@ -29,9 +29,8 @@ opt.hlsearch = true
 opt.splitright = true
 opt.splitbelow = true
 
--- clipboard: reuse the system clipboard when a provider is available
--- (no-op otherwise, so this is safe on any WSL/Windows Terminal setup)
-opt.clipboard = "unnamedplus"
+-- Keep normal yanks local; use explicit + yanks for OSC 52 over SSH.
+opt.clipboard = ""
 
 -- files / undo
 opt.swapfile = false
